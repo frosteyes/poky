@@ -19,6 +19,8 @@ RPROVIDES:${PN}-pulseaudio += "${PN}-pulse"
 RPROVIDES:${PN}-soup += "${PN}-souphttpsrc"
 RDEPENDS:${PN}-soup += "${MLPREFIX}${@bb.utils.contains('PACKAGECONFIG', 'soup2', 'libsoup-2.4', 'libsoup', d)}"
 
+PATH:prepend = "${STAGING_DIR_NATIVE}/usr/libexec:"
+
 PACKAGECONFIG_SOUP ?= "soup3"
 
 PACKAGECONFIG ??= " \
