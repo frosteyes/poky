@@ -7609,6 +7609,13 @@ system and gives an overview of their function and contents.
 
          $ bitbake -c populate_sdk imagename
 
+   :term:`SDKIMAGE_INSTALL_COMPLEMENTARY_HARD_DEPENDS_ONLY`
+      Set to '0' to install recommended complementary packages as part of populate_sdk.
+      Used to make the clasical sdk behave like Kirkstone and earlier yocto releases.
+      Complementary recommended packages was disabled for default because of long standing
+      bugs where RDEPENDS from -dev packages causes problems in sdk. Example with conflict
+      for main openssh and dropbear packages. Use with caution.
+
    :term:`SDKMACHINE`
       The machine for which the SDK is built. In other words, the SDK is built
       such that it runs on the target you specify with the :term:`SDKMACHINE`
