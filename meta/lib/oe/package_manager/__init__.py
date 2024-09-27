@@ -344,7 +344,7 @@ class PackageManager(object, metaclass=ABCMeta):
                          "'%s' returned %d:\n%s" %
                          (' '.join(cmd), e.returncode, e.output.decode("utf-8")))
 
-    def install_complementary(self, globs=None):
+    def install_complementary(self, globs=None, hard_depends_only=True):
         """
         Install complementary packages based upon the list of currently installed
         packages e.g. locales, *-dev, *-dbg, etc. Note: every backend needs to
@@ -399,7 +399,7 @@ class PackageManager(object, metaclass=ABCMeta):
                 bb.note("Installing complementary packages ... %s (skipped already provided packages %s)" % (
                     ' '.join(install_pkgs),
                     ' '.join(skip_pkgs)))
-                self.install(install_pkgs, hard_depends_only=True)
+                self.install(install_pkgs, hard_depends_only=hard_depends_only)
             except subprocess.CalledProcessError as e:
                 bb.fatal("Could not compute complementary packages list. Command "
                          "'%s' returned %d:\n%s" %
