@@ -65,7 +65,9 @@ class PkgSdk(Sdk):
         bb.note("Installing TARGET packages")
         self._populate_sysroot(self.target_pm, self.target_manifest)
 
-        self.target_pm.install_complementary(self.d.getVar('SDKIMAGE_INSTALL_COMPLEMENTARY'))
+        hard_depends_only = (self.d.getVar('SDKIMAGE_INSTALL_COMPLEMENTARY_HARD_DEPENDS_ONLY') == '1')
+        self.target_pm.install_complementary(self.d.getVar('SDKIMAGE_INSTALL_COMPLEMENTARY'),
+            hard_depends_only)
 
         self.target_pm.run_pre_post_installs()
 
